@@ -21,10 +21,14 @@ module.exports = {
     },
   },
   devServer: {
+    open: true,
     proxy: {
-      '/ajax': {
-        target: 'https://m.maoyan.com',
+      '/api': {
+        target: 'http://localhost:3000',
         changeOrigin: true,
+        pathRewrite: {
+          '/api': '/',
+        },
       },
     },
   },
