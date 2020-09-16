@@ -1,9 +1,16 @@
 <template>
   <div class="wrap">
-    <scroll :arr="arr" :up="true" @add="add" class="content">
+    <scroll
+      :arr="value"
+      :reset="reset"
+      v-model="rese"
+      :up="true"
+      @add="add"
+      class="content"
+    >
       <ul>
         <li v-for="item in sing">
-          <img :src="item.img1v1Url" alt="" />
+          <img :src="item.picUrl" alt="" />
           <span>{{ item.name }}</span>
         </li>
       </ul>
@@ -15,19 +22,40 @@
 export default {
   props: {
     sing: Array,
-    arr: Object,
+    value: Object,
+    reset: Boolean,
   },
   data() {
     return {
       data: '',
+      rese: false,
     }
+  },
+  watch: {
+    reset: {
+      handler() {
+        // if (!this.reset) {
+        //   return
+        // }
+        this.rese = this.reset
+      },
+      immediate: true,
+    },
+    rese() {
+      if (this.rese) {
+        return
+      }
+      this.change(this.rese)
+    },
   },
   methods: {
     add(num) {
-      console.log(num)
-      this.data = this.arr
+      this.data = this.value
       this.data.offset = num
       this.$emit('input', this.data)
+    },
+    change(bl) {
+      this.$emit('changetop', bl)
     },
   },
 }
@@ -37,7 +65,7 @@ export default {
 .wrap {
   width: 100%;
   position: absolute;
-  top: 45px;
+  top: 58px;
   bottom: 0;
   .content {
     width: 100%;
@@ -52,6 +80,7 @@ export default {
       align-items: center;
       img {
         width: 50px;
+        height: 50px;
         display: block;
         margin-right: 20px;
       }

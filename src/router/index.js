@@ -15,6 +15,14 @@ const routes = [
         name: 'reconmend',
         component: () =>
           import(/* webpackChunkName: "reconmend" */ '../views/Reconmend.vue'),
+        children: [
+          {
+            path: ':id',
+            name: 'gedan',
+            component: () =>
+              import(/* webpackChunkName: "reconmend" */ '../views/gedan.vue'),
+          },
+        ],
       },
       {
         path: 'singers',

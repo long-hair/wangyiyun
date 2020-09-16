@@ -8,4 +8,12 @@
 export default {}
 </script>
 
-<style></style>
+<style>
+.page {
+  width: 100%;
+  position: absolute;
+  top: 90px;
+  bottom: 0;
+  left: 0;
+}
+</style>

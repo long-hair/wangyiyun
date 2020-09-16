@@ -1,17 +1,23 @@
 <template>
   <div class="recommond-list">
     <h3 class="title">推荐歌单</h3>
+
     <ul class="list">
-      <li v-for="item in data" :key="item.id" class="item">
+      <li
+        v-for="item in data"
+        :key="item.id"
+        class="item"
+        @click="gogedan(item)"
+      >
         <div class="image">
-          <img v-lazy="item.picUrl" alt="music-list" class="img" />
+          <img :src="item.picUrl" class="img" />
           <p class="cover"></p>
           <p class="info">
             <span class="iconfont icon-headset"></span>
-            <span>{{item.playCount | formatter}}</span>
+            <span>{{ item.playCount | formatter }}</span>
           </p>
         </div>
-        <h4 class="name">{{item.name}}</h4>
+        <h4 class="name">{{ item.name }}</h4>
       </li>
     </ul>
   </div>
@@ -26,21 +32,26 @@ export default {
     formatter(count) {
       if (count < 10000) {
         //低于一万
-        return count;
+        return count
       } else if (count < 10000 * 10000) {
         //低于一亿
-        return Math.floor(count / 10000) + "万";
+        return Math.floor(count / 10000) + '万'
       } else {
         //大于一亿
-        return Math.floor(count / 10000 / 10000) + "亿";
+        return Math.floor(count / 10000 / 10000) + '亿'
       }
     },
   },
-};
+  methods: {
+    gogedan(item) {
+      this.$router.push({ name: 'gedan', params: { id: item.id } })
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/global-style.scss";
+@import '../../assets/global-style.scss';
 .recommond-list {
   width: 100%;
 }
@@ -72,20 +83,23 @@ export default {
         font-size: $font-size-s;
         display: flex;
         align-items: center;
-        .iconfont{
+        .iconfont {
           font-size: $font-size-l;
         }
       }
-      .cover{
+      .cover {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 30%;
-        background: linear-gradient(rgba(110, 110, 110, 0.4), rgba(255, 255, 255, 0));
+        background: linear-gradient(
+          rgba(110, 110, 110, 0.4),
+          rgba(255, 255, 255, 0)
+        );
       }
     }
-    .name{
+    .name {
       width: 100%;
       font-size: $font-size-s;
       font-weight: normal;

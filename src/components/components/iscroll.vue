@@ -19,6 +19,7 @@ export default {
     scrollX: Boolean,
     up: Boolean,
     arr: Object,
+    reset: Boolean,
   },
   data() {
     return {
@@ -31,12 +32,26 @@ export default {
       max: '',
     }
   },
+  watch: {
+    reset: {
+      handler() {
+        if (this.reset) {
+          console.log(4545)
+          this.scroll.scrollTo(0, 0, 0)
+          // this.reset = false
+          this.$emit('input', false)
+        }
+        deep: true
+        immediate: true
+      },
+    },
+  },
   mounted() {
     const scroll = new IScroll(this.$refs.scroll, {
       click: true,
       tap: true,
       probeType: 3,
-      scrollX: true,
+      scrollX: this.scrollX,
     })
 
     scroll.on('beforeScrollStart', () => {
@@ -67,7 +82,9 @@ export default {
       } else if (y - max == 0) {
         this.img = loadi
         this.upt = '正在加载'
-        this.$emit('add', this.arr.offset + 30)
+        if (this.arr) {
+          this.$emit('add', this.arr.offset + 30)
+        }
       }
     })
   },
@@ -81,6 +98,7 @@ export default {
   float: left;
 }
 .scroll-wrap {
+  height: 100%;
   overflow: hidden;
 }
 .uprefresh {

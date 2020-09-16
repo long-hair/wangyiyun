@@ -16,7 +16,9 @@
         <span>排行榜</span>
       </router-link>
     </nav>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -77,12 +79,5 @@ header {
       border-bottom: 2px solid $theme-color;
     }
   }
-}
-.page {
-  width: 100%;
-  position: absolute;
-  top: 90px;
-  bottom: 0;
-  left: 0;
 }
 </style>

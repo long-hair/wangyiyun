@@ -111,6 +111,7 @@ export default {
   flex-wrap: nowrap;
   margin-top: 5px;
   min-width: 100%;
+  // height: 26px;
 
   label {
     display: block;
@@ -124,11 +125,11 @@ export default {
   li {
     float: left;
     display: block;
-    padding: 2px;
+    padding: 4px;
     white-space: nowrap;
     border: 1px solid white;
     border-radius: 10px;
-    font-size: 12px;
+    font-size: 14px;
     margin: 0 2px;
   }
 }

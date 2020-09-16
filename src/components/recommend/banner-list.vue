@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import Swiper from "swiper/swiper-bundle.js";
-import "swiper/swiper-bundle.css";
+import Swiper from 'swiper/swiper-bundle.js'
+import 'swiper/swiper-bundle.css'
 export default {
   props: {
     data: Array,
@@ -24,28 +24,28 @@ export default {
       this.$nextTick(() => {
         this.swiper = new Swiper(this.$refs.swiper, {
           pagination: {
-            el: ".swiper-pagination",
+            el: '.swiper-pagination',
           },
           loop: true,
           autoplay: {
             delay: 3000,
-            disableOnInteraction: false
+            disableOnInteraction: false,
           },
-        });
-      });
+        })
+      })
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/global-style.scss";
+@import '../../assets/global-style.scss';
 .banner {
   width: 100%;
-  height: 140px;
+  height: 200px;
   position: relative;
   &::before {
-    content: "";
+    content: '';
     display: block;
     width: 100%;
     height: 65%;
@@ -74,15 +74,17 @@ export default {
 </style>
 
 <style lang="scss">
-@import "../../assets/global-style.scss";
-.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
-    margin: 0 4px;
+@import '../../assets/global-style.scss';
+.swiper-container-horizontal
+  > .swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  margin: 0 4px;
 }
 .swiper-pagination-bullet {
-    width: 8px;
-    height: 8px;
+  width: 8px;
+  height: 8px;
 }
-.swiper-pagination-bullet.swiper-pagination-bullet-active{
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: $theme-color;
 }
 </style>

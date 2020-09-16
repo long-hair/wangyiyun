@@ -6,7 +6,7 @@ module.exports = {
           require('postcss-pxtorem')(
             //引入插件
             {
-              rootValue: 75,
+              rootValue: 37.5,
               unitPrecision: 5,
               propList: ['*'],
               selectorBlackList: [],
