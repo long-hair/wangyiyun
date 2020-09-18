@@ -1,6 +1,11 @@
 <template>
-  <div class="rank page">
-    <global-a :offical="offical" :global="global"> </global-a>
+  <div>
+    <div class="rank page">
+      <global-a :offical="offical" :global="global"> </global-a>
+    </div>
+    <transition enter-active-class="fly-in" leave-active-class="fly-out">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -23,4 +28,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.page {
+  /* position: static; */
+}
+</style>

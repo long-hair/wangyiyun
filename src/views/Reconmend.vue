@@ -1,17 +1,19 @@
 <template>
   <div class="wrap">
     <div class="reconmend page">
-      <scroll>
+      <scroll :upscroll="true">
         <banner :data="banners"></banner>
         <reconmend :data="recommends"> </reconmend>
       </scroll>
     </div>
-    <router-view></router-view>
+    <transition enter-active-class="fly-in" leave-active-class="fly-out">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import banner from '../components/recommend/banner-list'
 import reconmend from '../components/recommend/recommend-list'
 export default {
@@ -25,7 +27,8 @@ export default {
       recommends: (state) => state.recommend.recommend,
     }),
   },
-  created () {
+
+  created() {
     this.$store.dispatch('recommend/requestBannerList')
     this.$store.dispatch('recommend/requestRecommendList')
   },

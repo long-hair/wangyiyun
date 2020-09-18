@@ -20,6 +20,8 @@ export default {
     up: Boolean,
     arr: Object,
     reset: Boolean,
+    handleScroll: Function,
+    upscroll: Boolean,
   },
   data() {
     return {
@@ -37,6 +39,7 @@ export default {
       handler() {
         if (this.reset) {
           console.log(4545)
+
           this.scroll.scrollTo(0, 0, 0)
           // this.reset = false
           this.$emit('input', false)
@@ -47,12 +50,17 @@ export default {
     },
   },
   mounted() {
-    const scroll = new IScroll(this.$refs.scroll, {
+    const scroll = (this.scroll = new IScroll(this.$refs.scroll, {
       click: true,
       tap: true,
       probeType: 3,
       scrollX: this.scrollX,
-    })
+    }))
+    this.handleScroll &&
+      scroll.on('scroll', () => {
+        // 将当前的位置传递给外部组件
+        this.handleScroll({ x: scroll.x, y: scroll.y })
+      })
 
     scroll.on('beforeScrollStart', () => {
       scroll.refresh()
@@ -60,6 +68,10 @@ export default {
     /* *********上滑刷新************* */
     scroll.on('scroll', () => {
       let y = scroll.y
+
+      if (!this.upscroll && y > 0) {
+        this.scroll.scrollTo(0, 0, 0)
+      }
       this.max = scroll.maxScrollY
       let max = this.max
 

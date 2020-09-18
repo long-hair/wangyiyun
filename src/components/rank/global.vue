@@ -1,10 +1,10 @@
 <template>
   <div class="page">
-    <scroll class="content">
+    <scroll class="content" :upscroll = true>
     <ul class="offical">
       <h1>官方榜</h1>
 
-      <li class="ofl" v-for="item in offical">
+      <li  class="ofl" v-for="item in offical" :key='item.id' @click='goAction(item.id)'>
         <img :src="item.coverImgUrl" alt="" />
           <span>{{item.updateFrequency}}</span>
           <div class="box">
@@ -18,7 +18,7 @@
 
     <ul class="global">
 
-      <li v-for="item in global">
+      <li v-for="item in global" :key="item.id" @click='goAction(item.id)'>
         <img :src="item.coverImgUrl" alt="" />
           <span>{{item.updateFrequency}}</span>
         </li> 
@@ -35,13 +35,18 @@ export default {
     offical: Array,
     global: Array,
   },
+  methods:{
+    goAction(id){
+      this.$router.push({ name: 'ge', params: { id, } })
+    }
+  },
   computed: {},
 }
 </script>
 
 <style scoped lang='scss'>
 .page{
-  position: absolute;
+  // position: absolute;
   top: 0px;
   bottom: 0;
   left: 0;
@@ -58,7 +63,7 @@ export default {
       height: 100px;
       border-bottom: 1px solid #ddd ;
       padding: 2px;
-      position: relative;
+      // position: relative;
 
       img{
       width: 100px;

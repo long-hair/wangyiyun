@@ -16,6 +16,9 @@
         <span>排行榜</span>
       </router-link>
     </nav>
+
+    <play class="pl" v-if="pageload"> </play>
+
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -23,7 +26,21 @@
 </template>
 
 <script>
-export default {}
+import { mapState, mapActions, mapMutations } from 'vuex'
+export default {
+  computed: {
+    ...mapState({
+      pageload: (state) => state.plays.pageload,
+    }),
+  },
+  data() {
+    return {}
+  },
+  methods: {
+    ...mapMutations({}),
+  },
+  mounted() {},
+}
 </script>
 
 <style lang="scss" scoped>
@@ -79,5 +96,14 @@ header {
       border-bottom: 2px solid $theme-color;
     }
   }
+}
+.pl {
+  position: absolute;
+  // background: red;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 </style>

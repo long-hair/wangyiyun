@@ -7,9 +7,10 @@
       :up="true"
       @add="add"
       class="content"
+      :upscroll="true"
     >
       <ul>
-        <li v-for="item in sing">
+        <li v-for="item in sing" :key="item.id" @click="goAction(item)">
           <img :src="item.picUrl" alt="" />
           <span>{{ item.name }}</span>
         </li>
@@ -56,6 +57,12 @@ export default {
     },
     change(bl) {
       this.$emit('changetop', bl)
+    },
+    goAction(item) {
+      this.$router.push({
+        name: 'singlist',
+        params: { id: item.id, src: item.picUrl },
+      })
     },
   },
 }

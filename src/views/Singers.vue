@@ -1,7 +1,12 @@
 <template>
-  <div class="singers page">
-    <type v-model="arr" :arr="arr"></type>
-    <list :sing="singers" v-model="arr" :reset="top" @changetop="ctop"></list>
+  <div>
+    <div class="singers page">
+      <type v-model="arr" :arr="arr"></type>
+      <list :sing="singers" v-model="arr" :reset="top" @changetop="ctop"></list>
+    </div>
+    <transition>
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 

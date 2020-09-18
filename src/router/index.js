@@ -29,12 +29,30 @@ const routes = [
         name: 'singers',
         component: () =>
           import(/* webpackChunkName: "Singers" */ '../views/Singers.vue'),
+        children: [
+          {
+            path: ':id&:src',
+            name: 'singlist',
+            component: () =>
+              import(
+                /* webpackChunkName: "reconmend" */ '../components/singers/singlist.vue'
+              ),
+          },
+        ],
       },
       {
         path: 'rank',
         name: 'rank',
         component: () =>
           import(/* webpackChunkName: "Rank" */ '../views/Rank.vue'),
+        children: [
+          {
+            path: ':id',
+            name: 'ge',
+            component: () =>
+              import(/* webpackChunkName: "reconmend" */ '../views/gedan.vue'),
+          },
+        ],
       },
     ],
   },

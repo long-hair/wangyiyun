@@ -42,7 +42,7 @@ export default {
 @import '../../assets/global-style.scss';
 .banner {
   width: 100%;
-  height: 200px;
+  height: 140px;
   position: relative;
   &::before {
     content: '';

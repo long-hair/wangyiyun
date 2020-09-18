@@ -26,6 +26,7 @@
 export default {
   props: {
     data: Array,
+    // login: Boolean,
   },
   // 局部过滤器
   filters: {

@@ -8,4 +8,8 @@ export const SINGER_LIST_API = '/artist/list'
 
 export const ALL_LIST_API = '/toplist/detail'
 
-// export const GLOBAL_LIST_API = ''
+export const GEDAN_LIST_API = '/playlist/detail'
+
+export const SING_LIST_API = '/artist/top/song'
+
+export const SING_TEXT_API = '/lyric'
